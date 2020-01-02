@@ -32,30 +32,25 @@
   ;          (fn [err data]
   ;              ; TODO - put in better eerror handling!
   ;            (put! tweetChannel [data err])))))
-  
-   (println "Sending tweeeet")
-  )
+
+  (println "Sending tweeeet"))
         ; TODO - get a random one, not just the first one!
 (defn tweet [event ctx cb]
-  ; (println ctx)
-  ; (println "Spewing Tweet!")
-  ; (let [tweets (loadTweets)
-  ;       randomTweet (first (loadTweets))]
-  
-  ; (let [randomTweet {:status "ok then"}])
-  ;   (println "here...")
-  ;   (println tweets)
-  ;   (go
-  ;     (<! (sendTweet randomTweet event))
-  ;     (println (str "successfully send tweet!"))
-  ; (cb nil (clj->js
-  ;          {:statusCode 200
-  ;           :headers    {"Content-Type" "text/html"}
-  ;           :body       (str "<h1>Another swell tweet! ")})))))
-  
   (println ctx)
-  )
+  (println "Spewing Tweet!")
+  (let [tweets (loadTweets)
+        randomTweet (first (loadTweets))]
 
+    (let [randomTweet {:status "ok then"}])
+    (println "here...")
+    (println tweets)
+    (go
+      (<! (sendTweet randomTweet event))
+      (println (str "successfully send tweet!"))
+      (cb nil (clj->js
+               {:statusCode 200
+                :headers    {"Content-Type" "text/html"}
+                :body       (str "<h1>Another swell tweet! " (:status randomTweet) " at " ((.format (moment.) "LLLL")))})))))
 
 (set! (.-exports js/module) #js
                              {:hello hello
