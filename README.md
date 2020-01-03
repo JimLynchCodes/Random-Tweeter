@@ -1,4 +1,54 @@
-# AWS Clojurescript Gradle Template
+
+# Random Tweeter
+
+Randomly tweets a Twitter tweet from a pool of potential tweets.
+
+# Usage
+
+Switch to node vX.X
+```
+nvm use
+```
+
+# Packaged As A Lambda Function
+This project uses the serverless project template, so the project is build to be dployed as a lambda function. However, you can still just always run it locally if you wish. 
+
+
+## To Run Locally, Simulating A Deployed Lambda Running
+```
+sls offline start
+```
+
+Then you can call the endpoint at http://localhost:8000/tweet
+
+
+## To Run Locally Once And Then Exit The Process
+```
+sls invoke
+```
+
+# Twitter Credentials
+
+When you POST to the send `tweet` endpoint, send in your Twitter credentials like this:
+```
+{   
+  "creds": {     
+    "consumer_key": "XXXXXXXXXXXXXXX",     
+    "consumer_secret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",     
+    "access_token": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",     
+    "access_token_secret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"   
+  } 
+}
+```
+
+# Configuring The Tweet Pool
+The "tweetpool.json" file can be modified to change the content of the tweets in the tweet pool.
+
+
+
+================================
+
+# Uses Serverless AWS Clojurescript Gradle Template
 
 This project compiles **Clojurescript** to a [NodeJS](https://nodejs.org/en/) module using the [Gradle Clojure Plugin](https://gradle-clojure.github.io/gradle-clojure/index.html).
 
