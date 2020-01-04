@@ -26,14 +26,13 @@
   [{:status "This is my first tweet from #ClojureScript :)"}])
 
 (defn sendTweet [randomTweet event]
-  ; (let [tweetChannel (chan)
-  ;       Twitter (new twit (clj->js (:creds (:body event))))]
-  ;   (.post Twitter "status/update" (clj->js {:status (:status randomTweet)})
-  ;          (fn [err data]
-  ;              ; TODO - put in better eerror handling!
-  ;            (put! tweetChannel [data err])))))
+  (let [tweetChannel (chan)
+        Twitter (new twit (clj->js (:creds (:body event))))]
+    (.post Twitter "status/update" (clj->js {:status (:status randomTweet)})
+           (fn [err data]
+               ; TODO - put in better eerror handling!
+             (put! tweetChannel [data err])))))
 
-  (println "Sending tweeeet"))
         ; TODO - get a random one, not just the first one!
 (defn tweet [event ctx cb]
   (println ctx)
@@ -42,7 +41,6 @@
         randomTweet (first (loadTweets))]
 
     (let [randomTweet {:status "ok then"}])
-    (println "here...")
     (println tweets)
     (go
       (<! (sendTweet randomTweet event))
@@ -55,4 +53,5 @@
 (set! (.-exports js/module) #js
                              {:hello hello
                               :now now
-                              :tweet tweet})
+                              :tweet tweet
+                              })
