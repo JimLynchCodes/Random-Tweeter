@@ -15,6 +15,7 @@ repositories {
 
 dependencies {
   implementation 'org.clojure:clojurescript:1.10.312'
+  implementation 'org.clojure:core.async:0.6.532'
   devImplementation 'org.clojure:java.classpath'
 }
 
