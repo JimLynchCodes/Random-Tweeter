@@ -27,8 +27,12 @@
 
 (defn sendTweet [randomTweet event]
   (let [tweetChannel (chan)
+        ; (println (clj->js event))
         Twitter (new twit (clj->js (:creds (:body event))))]
-    (.post Twitter "status/update" (clj->js {:status (:status randomTweet)})
+        (print event)
+        ; (println (cres: (:body event)))
+    (.post Twitter "status/update" (clj->js {:status (:status "This is my first tweet from a #Clojure program! 😉 🙃\nhttps://github.com/JimLynchCodes/Random-Tweeter")})
+    ; (.post Twitter "status/update" (clj->js {:status (:status randomTweet)})
            (fn [err data]
                ; TODO - put in better eerror handling!
              (put! tweetChannel [data err])))))
